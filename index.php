@@ -1,9 +1,17 @@
+<!-- Bruce Turner, IT 328, Spring 2019 -->
+<!-- CupCakes Assignment -->
+<!-- https://bturner.greenriverdev.com/328/CupCakes0408/index.php -->
+<!-- 04-08-19 Rev6.0 -->
+<!-- PHP Refresher Assignment -->
+<!--
+-->
+<!-- -->
 <?php
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-//initialize variables
+//the sole input from user is a first & last name, and 1 (or more) selected cupcakes
 $fname = "";
 $lname = "";
 
@@ -69,8 +77,6 @@ if(!empty($_GET))
         {
 
         }
-
-
     }
 
 }
@@ -93,7 +99,7 @@ if(!empty($_GET))
 <body>
 
 
-<h1 class="">Delicious Cupcakes with <span class="font-weight-bold">100%</span> Natural Ingredients!</h1>
+<h1 class="font-weight-bold">Delicious Cupcakes with <span class="font-weight-bold">100%</span> Natural Ingredients!</h1>
 <h2 class="font-weight-bold">Congratulations, as customer No. 1000 You Get A Discount! </h2>
 
 <form class="alert-danger">
