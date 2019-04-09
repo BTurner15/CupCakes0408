@@ -1,7 +1,7 @@
 <!-- Bruce Turner, IT 328, Spring 2019 -->
 <!-- CupCakes Assignment -->
 <!-- https://bturner.greenriverdev.com/328/CupCakes0408/index.php -->
-<!-- 04-08-19 Rev6.0 -->
+<!-- 04-08-19 Rev8.0 -->
 <!-- PHP Refresher Assignment -->
 <!-- Many thanks to a number of people for the substance of this code! -->
 <!-- I would not have much anything without a lot of help! -->
@@ -73,11 +73,10 @@ if(!empty($_GET))
     //figure out the cost and print out the summary
     if($isValid)
     {
-        $costPerCake = 4.29;
+        $costPerCake = 3.50;
         $numCakes = sizeof($flavors);
         $total = $numCakes * $costPerCake;
-        echo "Thank you for your order ".$fname."!";
-        echo "<p>Thank you for your order!</p>";
+        echo "Thank you, ".$fname.", for your order!";
         echo "<ul>";
         echo '<li>'.implode('</li><li>', $flavors).'</li>';
         echo '</ul>';
@@ -102,7 +101,6 @@ if(!empty($_GET))
 
     <title>PHP Review: Cupcakes</title>
 
-
 </head>
 <body>
 
@@ -110,7 +108,7 @@ if(!empty($_GET))
 <h1 class="font-weight-bold">Delicious Cupcakes with <span class="font-weight-bold">100%</span> Natural Ingredients!</h1>
 <h2 class="font-weight-bold">Congratulations, as customer No. 1000 You Get A Discount! </h2>
 
-<form class="alert-danger">
+<form class="alert-success">
     <fieldset>
         <legend>
             Lucky Customer
@@ -120,7 +118,7 @@ if(!empty($_GET))
             <input type="text" name="fname" id="fname" value= '<?php echo $fname; ?>'>
         </div>
         <br>
-        <div>
+        <div class="font-weight-bold">
             Last Name:
             <input type="text" name="lname" id="lname" value='<?php echo $lname; ?>'>
         </div>
@@ -139,16 +137,16 @@ if(!empty($_GET))
                 "lemon"=>"Lemon Drop", "tiramisu"=>"Tiramisu (coffee-flavoured)");
 
             foreach($flavors as $flavor)
+            {
                 //first thank you to Phil Bowden, who included in his code a
                 //thanks Keith Carlson for the foreach approach. My thanks to both!
-            {
 
                 //make checkboxes sticky. Bruce Turner is still confused on this
                 if((!empty($_GET['flavors']) && in_array($flavor, $_GET['flavors'])))
                 {
                     $checked = "checked = 'checked'";
                 }
-                //"...but not crazy sticky!:-)" I have to review this !!BT
+                //"...but not crazy sticky!:-)" what is crazy sticky ?? !!BT
                 else
                 {
                     $checked = "";
