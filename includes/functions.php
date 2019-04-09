@@ -1,9 +1,11 @@
 <?php
 # functions.php
-/* Bruce Turner, IT 328, S2019 -->
+/* Bruce Turner, IT 328, Spring 2019 -->
    https://bturner.greenriverdev.com/328/CupCakes0408/includes/functions.php -->
-   04-08-19 Rev.2
+   04-08-19 Rev.3
 */
+// credit for this function is guidance from Ken Hang & the current text book
+// at that time, PHP and MySQL for Dynamic Websites, 4th.edition
 //------------------------------------------------------------------------------
 //                          my_error_handler()
 // Create the error handler:
