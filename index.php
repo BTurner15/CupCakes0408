@@ -3,30 +3,38 @@
 <!-- https://bturner.greenriverdev.com/328/CupCakes0408/index.php -->
 <!-- 04-08-19 Rev6.0 -->
 <!-- PHP Refresher Assignment -->
-<!--
+<!-- Many thanks to a number of people for the substance of this code! -->
+<!-- I would not have much anything without a lot of help! -->
+<!-- Prime contributor Phil Bowden, then indirectly Keith Carlson, the bootstrap help -->
+<!-- is from our facilitator Jake Suhoversnik -->
+<!-- Phil was kind enough to share his GitHub repo from Winter 2019. Apparently Keith Carlson -->
+<!-- helped him, and then the afternoon with our new facilitator paid dividends with bootstrap -->
 -->
 <!-- -->
 <?php
-
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+// 1st things first. Let's set up error reporting !
+// Flag variable for site status:
+define('LIVE', FALSE);
+include("includes/functions.php");
+// Use my error handler:
+set_error_handler('my_error_handler');
+// start of the specific code
 
 //the sole input from user is a first & last name, and 1 (or more) selected cupcakes
-$fname = "";
-$lname = "";
-
+$fname = ""; //this how we check for input
+$lname = ""; //require both for valid input
 
 //If form is submitted, process the data
 if(!empty($_GET))
 {
-    //boolean to track errors
+    //we will require a complete name (first & last), and 1 (or more) cupcakes
     $isValid = true;
 
     //Check first name
     $fname = $_GET['fname'];
     if(empty($fname))
     {
-        echo "<p>Please provide a first name</p>";
+        echo "<p>Please input a first name</p>";
         $isValid = false;
     }
 
@@ -34,14 +42,14 @@ if(!empty($_GET))
     $lname = $_GET['lname'];
     if(empty($_GET['lname']))
     {
-        echo "<p>Please provide a last name</p>";
+        echo "<p>Please input a last name</p>";
         $isValid = false;
     }
 
     //check for at least one flavor
     if (!isset($_GET['flavors']))
     {
-        echo "Please choose at least one flavor";
+        echo "No Cupcakes selected. Please do so";
         $isValid = false;
     }
     else
@@ -65,11 +73,11 @@ if(!empty($_GET))
     //figure out the cost and print out the summary
     if($isValid)
     {
-        $costPerCake = 3.50;
+        $costPerCake = 4.29;
         $numCakes = sizeof($flavors);
         $total = $numCakes * $costPerCake;
         echo "Thank you for your order ".$fname."!";
-        echo "<p>Order Summary</p>";
+        echo "<p>Thank you for your order!</p>";
         echo "<ul>";
         echo '<li>'.implode('</li><li>', $flavors).'</li>';
         echo '</ul>';
@@ -130,21 +138,22 @@ if(!empty($_GET))
                 "caramel"=>"Salted Caramel Cupcake","velvet"=>"Red Velvet",
                 "lemon"=>"Lemon Drop", "tiramisu"=>"Tiramisu (coffee-flavoured)");
 
-
-            foreach($flavors as $flavor) //thanks Keith Carlson for the foreach approach
+            foreach($flavors as $flavor)
+                //first thank you to Phil Bowden, who included in his code a
+                //thanks Keith Carlson for the foreach approach. My thanks to both!
             {
 
-                //make checkboxes sticky
+                //make checkboxes sticky. Bruce Turner is still confused on this
                 if((!empty($_GET['flavors']) && in_array($flavor, $_GET['flavors'])))
                 {
                     $checked = "checked = 'checked'";
                 }
-                //but not crazy sticky!:-)
+                //"...but not crazy sticky!:-)" I have to review this !!BT
                 else
                 {
                     $checked = "";
                 }
-                //check for valid choice of flavor
+                //flavor selected legitimate ?
 
                 echo "<input type = 'checkbox' name = 'flavors[]'
                     value = '$flavor' $checked/>$flavor<br>";
